@@ -9,11 +9,10 @@ from stockadvisor.tools.news import get_news
 from stockadvisor.response import Recommendation
 from langchain.agents.structured_output import ToolStrategy
 
-
 checkpointer = InMemorySaver()
 
 agent = create_deep_agent(
-    model="ollama:mistral",
+    model="ollama:qwen3.5:4b",
     tools=[get_stock_info, get_news],
     system_prompt=SYSTEM_PROMPT,
     checkpointer=checkpointer,

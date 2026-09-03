@@ -1,8 +1,9 @@
 from langchain.tools import tool
 import yfinance as yf
+import logging
 
 @tool
-def get_stock_info(symbol: str, period: str = "30d") -> str:
+def get_stock_info(symbol: str, period: str = "1mo") -> str:
     """Get the latest stock information for a given symbol."""
     ticker = yf.Ticker(symbol.upper())
     history = ticker.history(period=period)
@@ -16,6 +17,8 @@ def get_stock_info(symbol: str, period: str = "30d") -> str:
     if len(history) > 1:
         previous = earliest["Close"]
         if previous:
-            change = (latest["Close"] - previous) / previous * 100
+            change = ((latest["Close"] - previous) / previous) * 100
+
+    logging.warning(f"Retrieved stock info for {symbol.upper()}: Price: ${latest['Close']:.2f}, Change (last {period}): {change:+.2f}%")
 
     return f"Stock info for {symbol.upper()}: Price: ${latest['Close']:.2f}, Change (last {period}): {change:+.2f}%"
