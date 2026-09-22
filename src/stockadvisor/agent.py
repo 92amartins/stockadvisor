@@ -1,22 +1,17 @@
 from deepagents import create_deep_agent
-from langgraph.checkpoint.memory import InMemorySaver
 
 from stockadvisor.prompts import SYSTEM_PROMPT
 from stockadvisor.tools.stocks import get_stock_info
 from stockadvisor.tools.news import get_news
 
-checkpointer = InMemorySaver()
-
 agent = create_deep_agent(
-    model="ollama:qwen3.5:4b",
+    model="ollama:qwen3.5:9b",
     tools=[get_stock_info, get_news],
-    system_prompt=SYSTEM_PROMPT,
-    checkpointer=checkpointer,
+    system_prompt=SYSTEM_PROMPT
 )
 
 result = agent.invoke(
-    {"messages": [{"role": "user", "content": "What is the capital of the United States?"}]},
-    config={"configurable": {"thread_id": "thread-1"}}
+    {"messages": [{"role": "user", "content": "What is the capital of the United States?"}]}
 )
 
 print(result["messages"][-1].content)

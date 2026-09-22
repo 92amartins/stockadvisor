@@ -9,6 +9,8 @@ dependencies = [
     "gnews>=0.8.2",
     "langchain>=1.3.18",
     "langchain-ollama>=1.1.0",
+    "langgraph>=1.2.11",
+    "langgraph-cli[inmem]>=0.4.31",
     "yfinance>=1.7.0",
 ]
 
