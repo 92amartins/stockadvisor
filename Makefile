@@ -1,3 +1,5 @@
+.PHONY: run dev test
+
 run:
 	@uv run python src/stockadvisor/agent.py
 

@@ -39,6 +39,16 @@ def test_removes_url_from_every_article(gnews_cls):
     assert result[0]["description"] == "desc"
 
 
+def test_handles_articles_without_url(gnews_cls):
+    gnews_cls.return_value.get_news.return_value = [
+        {"title": "No URL article", "description": "desc"},
+    ]
+
+    result = get_news.invoke({"symbol": "AAPL"})
+
+    assert result == [{"title": "No URL article", "description": "desc"}]
+
+
 def test_queries_articles_from_the_last_30_days(gnews_cls):
     gnews_cls.return_value.get_news.return_value = []
 
