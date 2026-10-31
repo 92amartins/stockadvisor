@@ -19,6 +19,7 @@ def get_news(symbol: str) -> list[dict[str, Any]]:
     # I want to get rid of the url for each news item.
     articles = news_client.get_news(symbol)
     for article in articles:
-        del article["url"]
+        # `url` is not always present; remove it when there.
+        article.pop("url", None)
 
     return articles
