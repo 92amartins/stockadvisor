@@ -11,3 +11,9 @@ wheels/
 
 # Environment variables
 .env
+
+# LangGraph local API data
+.langgraph_api/
+
+# Test caches
+.pytest_cache/

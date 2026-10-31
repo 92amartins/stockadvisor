@@ -3,3 +3,6 @@ run:
 
 dev:
 	@uv run langgraph dev --config src/stockadvisor/langgraph.json
+
+test:
+	@uv run pytest
